@@ -59,22 +59,21 @@ export const deleteEmployees = async (req, res) => {
 }
 
 export const updateEmployees = async (req, res) => {
-    const { id_jp } = req.params
-    const { Nombre_jp, salario_jp } = req.body
     try {
-        const [result] = await pool.query('UPDATE tdtrabajador_jp SET Nombre_jp = IFNULL(?, Nombre_jp), salario_jp = IFNULL(?, salario_jp) WHERE id_jp = ?', [Nombre_jp, salario_jp, id_jp])
+        const { id_jp } = req.params;
+        const { Nombre_jp, salario_jp } = req.body;
 
-        if (result.affectedRows === 0) return res.status(404).json({
-            message: 'Employee not found'
-        })
+        const [result] = await pool.query(
+            'UPDATE tdtrabajador_jp SET Nombre_jp = COALESCE(?, Nombre_jp), salario_jp = COALESCE(?, salario_jp) WHERE id_jp = ?',
+            [Nombre_jp, salario_jp, id_jp]
+        );
 
-        const [rows] = await pool.query('SELECT * FROM tdtrabajador_jp WHERE id_jp = ?', [id_jp])
+        if (result.affectedRows === 0)
+            return res.status(404).json({ message: 'Empleado no encontrado' });
 
-        res.json(rows[0])
+        const [rows] = await pool.query('SELECT * FROM tdtrabajador_jp WHERE id_jp = ?', [id_jp]);
+        res.json(rows[0]);
     } catch (error) {
-        return res.status(500).json({
-            message: 'Something goes wrong'
-        })
+        return res.status(500).json({ message: error.message });
     }
-
-}
+};
