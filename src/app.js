@@ -13,10 +13,11 @@ const app = express()
 app.use(express.json())
 
 app.use(indexRoutes)
-app.use('/api', employeesRoutes)
-app.use('/api', departamentoRoutes);
-app.use('/api', proyectoRoutes);
-app.use('/api', asistenciaRoutes);
+app.use('/api/trabajadores', employeesRoutes);
+app.use('/api/departamentos', departamentoRoutes);
+app.use('/api/proyectos', proyectoRoutes);
+app.use('/api/asistencias', asistenciaRoutes);
+
 
 app.use((req, res, next)  => {
     res.status(404).json ({

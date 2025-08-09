@@ -9,7 +9,7 @@ router.get('/proyectos/:id', getProyectoById);
 
 router.post('/proyectos', createProyecto);
 
-router.put('/proyectos/:id', updateProyecto);
+router.patch('/proyectos/:id_proyecto_jp', updateProyecto);
 
 router.delete('/proyectos/:id', deleteProyecto);
 

@@ -9,7 +9,7 @@ router.get('/departamentos/:id', getDepartamentoById);
 
 router.post('/departamentos', createDepartamento);
 
-router.put('/departamentos/:id', updateDepartamento);
+router.patch('/departamentos/:id_departamento_jp', updateDepartamento);
 
 router.delete('/departamentos/:id', deleteDepartamento);
 

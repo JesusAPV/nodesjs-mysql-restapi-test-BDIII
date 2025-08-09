@@ -9,7 +9,7 @@ router.get('/asistencias/:id', getAsistenciaById);
 
 router.post('/asistencias', createAsistencia);
 
-router.put('/asistencias/:id', updateAsistencia);
+router.patch('/asistencias/:id_asistencia_jp', updateAsistencia);
 
 router.delete('/asistencias/:id', deleteAsistencia);
 
